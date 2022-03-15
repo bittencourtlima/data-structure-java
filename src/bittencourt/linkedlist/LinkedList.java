@@ -130,12 +130,39 @@ public class LinkedList {
         }
     }
 
+    public void printReverse(){
+        System.out.println(head.printReverse());
+    }
+
+    public void reverse(){
+        Node temp = head;
+        head = tail;
+        tail = temp;
+
+        Node before = null;
+        for(int i=0; i<length; i++){
+            Node after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
+        }
+    }
+
+
     public class Node{
         public int value;
         Node next;
 
         public Node(int value){
             this.value = value;
+        }
+
+        public String printReverse(){
+            if(next == null){
+                return String.valueOf(value);
+            }else{
+                return next.printReverse() + " <- " +  value;
+            }
         }
     }
 }
